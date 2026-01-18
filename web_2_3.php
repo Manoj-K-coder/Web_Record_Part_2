@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Employee Registration</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 <body class="bg-light">
 
@@ -20,7 +22,7 @@
 
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" name="name" id="name" 
+                            <input type="text" name="name" id="name" placeholder="Enter your full name"
                                 class="form-control <?php echo (!empty($nameErr)) ? 'is-invalid' : ''; ?>" 
                                 value="<?php echo htmlspecialchars($name); ?>">
                             <div class="invalid-feedback"><?php echo $nameErr; ?></div>
@@ -28,7 +30,7 @@
 
                         <div class="mb-3">
                             <label for="pan" class="form-label">PAN Number</label>
-                            <input type="text" name="pan" id="pan" 
+                            <input type="text" name="pan" id="pan" placeholder="Enter PAN Number"
                                 class="form-control <?php echo (!empty($panErr)) ? 'is-invalid' : ''; ?>" 
                                 value="<?php echo htmlspecialchars($pan); ?>">
                             <div class="invalid-feedback"><?php echo $panErr; ?></div>
@@ -36,7 +38,7 @@
 
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" name="password" id="password" 
+                            <input type="password" name="password" id="password" placeholder="Enter Password"
                                 class="form-control <?php echo (!empty($passwordErr)) ? 'is-invalid' : ''; ?>" 
                                 value="">
                             <div class="invalid-feedback"><?php echo $passwordErr; ?></div>
@@ -44,7 +46,7 @@
 
                         <div class="mb-3">
                             <label for="mobile" class="form-label">Mobile Number</label>
-                            <input type="text" name="mobile" id="mobile" 
+                            <input type="text" name="mobile" id="mobile" placeholder="Enter mobile number"
                                 class="form-control <?php echo (!empty($mobileErr)) ? 'is-invalid' : ''; ?>" 
                                 value="<?php echo htmlspecialchars($mobile); ?>">
                             <div class="invalid-feedback"><?php echo $mobileErr; ?></div>
@@ -65,9 +67,9 @@
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<!-- PHP Code -->
 <?php
 $name = $pan = $password = $mobile = "";
 $nameErr = $panErr = $passwordErr = $mobileErr = $successMsg = "";
