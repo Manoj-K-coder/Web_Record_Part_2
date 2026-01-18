@@ -1,3 +1,44 @@
+<?php
+$name = $pan = $password = $mobile = "";
+$nameErr = $panErr = $passwordErr = $mobileErr = $successMsg = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = trim($_POST["name"]);
+    $pan = trim($_POST["pan"]);
+    $password = trim($_POST["password"]);
+    $mobile = trim($_POST["mobile"]);
+
+    if (empty($name)) {
+        $nameErr = "Name is required";
+    } elseif (!preg_match("/^[a-zA-Z ]+$/", $name)) {
+        $nameErr = "Name should contain only alphabets and spaces";
+    }
+
+    if (empty($pan)) {
+        $panErr = "PAN Number is required";
+    } elseif (!preg_match("/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/", $pan)) {
+        $panErr = "Invalid PAN format. Example: ABCDE1234F";
+    }
+
+    if (empty($password)) {
+        $passwordErr = "Password is required";
+    } elseif (strlen($password) < 6) {
+        $passwordErr = "Password must be at least 6 characters long";
+    }
+
+    if (empty($mobile)) {
+        $mobileErr = "Mobile Number is required";
+    } elseif (!preg_match("/^[0-9]{10}$/", $mobile)) {
+        $mobileErr = "Mobile Number must contain exactly 10 digits";
+    }
+
+    if (empty($nameErr) && empty($panErr) && empty($passwordErr) && empty($mobileErr)) {
+        $successMsg = "Employee registered successfully!";
+        $name = $pan = $password = $mobile = "";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,8 +46,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Employee Registration</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
 </head>
 <body class="bg-light">
 
@@ -67,46 +106,6 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-<!-- PHP Code -->
-<?php
-$name = $pan = $password = $mobile = "";
-$nameErr = $panErr = $passwordErr = $mobileErr = $successMsg = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = trim($_POST["name"]);
-    $pan = trim($_POST["pan"]);
-    $password = trim($_POST["password"]);
-    $mobile = trim($_POST["mobile"]);
-
-    if (empty($name)) {
-        $nameErr = "Name is required";
-    } elseif (!preg_match("/^[a-zA-Z ]+$/", $name)) {
-        $nameErr = "Name should contain only alphabets and spaces";
-    }
-
-    if (empty($pan)) {
-        $panErr = "PAN Number is required";
-    } elseif (!preg_match("/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/", $pan)) {
-        $panErr = "Invalid PAN format. Example: ABCDE1234F";
-    }
-
-    if (empty($password)) {
-        $passwordErr = "Password is required";
-    } elseif (strlen($password) < 6) {
-        $passwordErr = "Password must be at least 6 characters long";
-    }
-
-    if (empty($mobile)) {
-        $mobileErr = "Mobile Number is required";
-    } elseif (!preg_match("/^[0-9]{10}$/", $mobile)) {
-        $mobileErr = "Mobile Number must contain exactly 10 digits";
-    }
-
-    if (empty($nameErr) && empty($panErr) && empty($passwordErr) && empty($mobileErr)) {
-        $successMsg = "Employee registered successfully!";
-        $name = $pan = $password = $mobile = "";
-    }
-}
-?>
